@@ -309,10 +309,25 @@
     overflow-x:auto;
     overflow-y:hidden;
     -webkit-overflow-scrolling:touch;
-    scrollbar-width:none;
+    scrollbar-width:thin;
+    scrollbar-color:var(--kraft-light) transparent;
     padding:0 clamp(20px, 5vw, 56px) 20px;
+    cursor:grab;
   }
-  .gallery-scroll-container::-webkit-scrollbar{ display:none; }
+  .gallery-scroll-container:active{
+    cursor:grabbing;
+  }
+  .gallery-scroll-container::-webkit-scrollbar{
+    height:8px;
+  }
+  .gallery-scroll-container::-webkit-scrollbar-track{
+    background:rgba(244,239,228,0.05);
+    border-radius:4px;
+  }
+  .gallery-scroll-container::-webkit-scrollbar-thumb{
+    background:var(--kraft-light);
+    border-radius:4px;
+  }
   .gallery-scroll{
     display:flex;
     gap:16px;
