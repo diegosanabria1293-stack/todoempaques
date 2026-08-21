@@ -575,6 +575,95 @@
     font-size:0.82rem; color:var(--ink-dim);
   }
 
+  /* ---------- GALERIA HORIZONTAL DESLIZABLE ---------- */
+  .gallery-scroll-container{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding:0 clamp(20px, 5vw, 56px) 20px;
+  }
+  .gallery-scroll-container::-webkit-scrollbar{ display:none; }
+
+  .gallery-scroll{
+    display:flex;
+    gap:16px;
+    width:max-content;
+    padding-bottom:10px;
+  }
+
+  .gallery-card{
+    flex:0 0 auto;
+    width:280px;
+    border-radius:12px;
+    overflow:hidden;
+    background:var(--panel);
+    border:1px solid var(--line);
+    transition:transform .3s ease, border-color .3s ease;
+  }
+  .gallery-card:hover{
+    transform:translateY(-6px);
+    border-color:var(--kraft-light);
+  }
+
+  .gallery-img-wrap{
+    width:100%;
+    height:380px;
+    overflow:hidden;
+    position:relative;
+  }
+  .gallery-img-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .gallery-card:hover .gallery-img-wrap img{
+    transform:scale(1.08);
+  }
+
+  .gallery-info{
+    padding:18px 20px 22px;
+  }
+  .gallery-info h3{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:700;
+    font-size:1.15rem;
+    text-transform:uppercase;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+  .gallery-info p{
+    font-size:0.82rem;
+    color:var(--ink-dim);
+    line-height:1.5;
+  }
+
+  /* Indicadores de scroll */
+  .scroll-hint{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    padding:10px 0 30px;
+  }
+  .scroll-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--line);
+    transition:background .3s, transform .3s;
+  }
+  .scroll-dot.active{
+    background:var(--kraft-light);
+    transform:scale(1.2);
+  }
+
+  @media (max-width:600px){
+    .gallery-card{ width:240px; }
+    .gallery-img-wrap{ height:320px; }
+  }
+
 </style>
 <base target="_blank">
 </head>
@@ -742,45 +831,164 @@ Empaques premium para café, snacks, frutos secos, especias, suplementos, cosmé
     </div>
   </section>
 
-  <!-- PRODUCT GALLERY - Fotos reales -->
-  <section id="galeria" style="background:var(--bg-soft);">
-    <div class="wrap">
-      <div class="section-head">
+  
+  <!-- GALERIA HORIZONTAL DESLIZABLE -->
+  <section id="galeria" style="padding:0; overflow:hidden;">
+    <div class="wrap" style="padding-bottom:20px;">
+      <div class="section-head" style="margin-bottom:30px;">
         <div>
           <p class="eyebrow">Galería</p>
-          <h2 class="display">Nuestros productos</h2>
+          <h2 class="display">Nuestros empaques</h2>
         </div>
-        <p>Fotos reales de los empaques que fabricamos. Calidad que se ve y se siente.</p>
+        <p style="color:var(--ink-dim); font-size:0.9rem;">Desliza para ver todos los productos →</p>
       </div>
     </div>
-    <div class="wrap" style="padding:0;">
-      <div class="gallery-grid">
-        <figure class="gallery-item large">
-          <img src="assets/images/producto_negro_mate.jpg" alt="Empaque negro mate premium - Stand Up Pouch" loading="lazy">
-          <figcaption>
-            <span class="tag">Negro mate</span>
-            <h3>Stand Up Pouch Premium</h3>
-            <p>Acabado mate de alto contraste para marcas que destacan en góndola.</p>
-          </figcaption>
-        </figure>
-        <figure class="gallery-item">
-          <img src="assets/images/producto_plateado.jpg" alt="Empaque plateado metalizado - Barrera total" loading="lazy">
-          <figcaption>
-            <span class="tag">Plateado</span>
-            <h3>Metalizado</h3>
-            <p>Barrera completa contra luz y humedad.</p>
-          </figcaption>
-        </figure>
-        
-        <figure class="gallery-item wide">
-          <img src="assets/images/producto_kraft_ventana.jpg" alt="Bolsas kraft con ventana - Varios tamaños" loading="lazy">
-          <figcaption>
-            <span class="tag">Kraft + Ventana</span>
-            <h3>Stand Up Kraft con Ventana</h3>
-            <p>Disponibles en múltiples tamaños con zipper hermético.</p>
-          </figcaption>
-        </figure>
+
+    <div class="gallery-scroll-container">
+      <div class="gallery-scroll">
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="assets/images/01_negro_valvula_zipper.jpg" alt="Negro con Válvula" loading="lazy">
+          </div>
+          <div class="gallery-info">
+            <h3>Negro con Válvula</h3>
+            <p>Stand Up Pouch 250g con zipper y válvula desgasificadora</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="assets/images/02_kraft_ventana.jpg" alt="Kraft con Ventana" loading="lazy">
+          </div>
+          <div class="gallery-info">
+            <h3>Kraft con Ventana</h3>
+            <p>Bolsa kraft natural con ventana transparente</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="assets/images/03_negro_mate.jpg" alt="Negro Mate" loading="lazy">
+          </div>
+          <div class="gallery-info">
+            <h3>Negro Mate</h3>
+            <p>Acabado mate premium para marcas de lujo</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="assets/images/04_plateado.jpg" alt="Plateado Metalizado" loading="lazy">
+          </div>
+          <div class="gallery-info">
+            <h3>Plateado Metalizado</h3>
+            <p>Barrera total contra luz y humedad</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="assets/images/05_kraft_natural.jpg" alt="Kraft Natural" loading="lazy">
+          </div>
+          <div class="gallery-info">
+            <h3>Kraft Natural</h3>
+            <p>Papel kraft ecológico con zipper</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="assets/images/06_plateado_concreto.jpg" alt="Plateado Concreto" loading="lazy">
+          </div>
+          <div class="gallery-info">
+            <h3>Plateado Concreto</h3>
+            <p>Diseño industrial en fondo concreto</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="assets/images/07_negro_mate_premium.jpg" alt="Negro Mate Premium" loading="lazy">
+          </div>
+          <div class="gallery-info">
+            <h3>Negro Mate Premium</h3>
+            <p>Stand Up Pouch negro de alta gama</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="assets/images/08_plateado_premium.jpg" alt="Plateado Premium" loading="lazy">
+          </div>
+          <div class="gallery-info">
+            <h3>Plateado Premium</h3>
+            <p>Metalizado con acabado profesional</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="assets/images/09_trio_kraft_negro_plateado.jpg" alt="Colección Completa" loading="lazy">
+          </div>
+          <div class="gallery-info">
+            <h3>Colección Completa</h3>
+            <p>Kraft, negro y plateado juntos</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="assets/images/10_negro_origen.jpg" alt="Negro Origen" loading="lazy">
+          </div>
+          <div class="gallery-info">
+            <h3>Negro Origen</h3>
+            <p>Empaque para café de especialidad</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="assets/images/11_negro_standup.jpg" alt="Negro Stand Up" loading="lazy">
+          </div>
+          <div class="gallery-info">
+            <h3>Negro Stand Up</h3>
+            <p>Bolsa stand up con fondo estable</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="assets/images/12_plateado_origen.jpg" alt="Plateado Origen" loading="lazy">
+          </div>
+          <div class="gallery-info">
+            <h3>Plateado Origen</h3>
+            <p>Metalizado para producto gourmet</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="assets/images/13_negro_lateral.jpg" alt="Negro Lateral" loading="lazy">
+          </div>
+          <div class="gallery-info">
+            <h3>Negro Lateral</h3>
+            <p>Vista lateral del empaque negro</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="assets/images/14_negro_fondo_negro.jpg" alt="Negro Total" loading="lazy">
+          </div>
+          <div class="gallery-info">
+            <h3>Negro Total</h3>
+            <p>Negro mate sobre fondo negro</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="assets/images/15_blanco_standup.jpg" alt="Blanco Stand Up" loading="lazy">
+          </div>
+          <div class="gallery-info">
+            <h3>Blanco Stand Up</h3>
+            <p>Bolsa blanca limpia y minimalista</p>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <!-- Indicadores de scroll -->
+    <div class="scroll-hint">
+      <span class="scroll-dot active"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
     </div>
   </section>
 
