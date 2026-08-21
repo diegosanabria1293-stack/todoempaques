@@ -513,6 +513,68 @@
     width:32px; height:32px;
     fill:#FFFFFF;
   }
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-auto-rows:280px;
+    gap:12px;
+  }
+  @media (max-width:900px){ .gallery-grid{ grid-template-columns:repeat(2, 1fr); grid-auto-rows:240px; } }
+  @media (max-width:560px){ .gallery-grid{ grid-template-columns:1fr; grid-auto-rows:280px; } }
+
+  .gallery-item{
+    position:relative;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--panel);
+  }
+  .gallery-item img{
+    width:100%; height:100%;
+    object-fit:cover;
+    transition:transform .4s ease;
+  }
+  .gallery-item:hover img{ transform:scale(1.05); }
+
+  .gallery-item.large{
+    grid-column:span 2; grid-row:span 2;
+  }
+  .gallery-item.wide{
+    grid-column:span 2;
+  }
+  @media (max-width:560px){
+    .gallery-item.large{ grid-column:span 1; grid-row:span 1; }
+    .gallery-item.wide{ grid-column:span 1; }
+  }
+
+  .gallery-item figcaption{
+    position:absolute; bottom:0; left:0; right:0;
+    padding:20px;
+    background:linear-gradient(transparent, rgba(22,20,15,0.95));
+    transform:translateY(8px);
+    opacity:0;
+    transition:all .3s ease;
+  }
+  .gallery-item:hover figcaption{
+    transform:translateY(0);
+    opacity:1;
+  }
+  .gallery-item figcaption .tag{
+    display:inline-block;
+    font-family:'IBM Plex Mono'; font-size:0.65rem;
+    color:var(--kraft-light); text-transform:uppercase;
+    letter-spacing:0.1em; margin-bottom:8px;
+  }
+  .gallery-item figcaption h3{
+    font-family:'Big Shoulders Display'; font-weight:700;
+    font-size:1.1rem; text-transform:uppercase;
+    margin-bottom:4px;
+  }
+  .gallery-item figcaption p{
+    font-size:0.82rem; color:var(--ink-dim);
+  }
+
 </style>
 <base target="_blank">
 </head>
@@ -676,6 +738,55 @@ Empaques premium para café, snacks, frutos secos, especias, suplementos, cosmé
           <p>Refuerzo estructural para cargas pesadas o producto a granel.</p>
           <div class="spec-row"><span>Material</span><span>Multicapa reforzada</span></div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT GALLERY - Fotos reales -->
+  <section id="galeria" style="background:var(--bg-soft);">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Galería</p>
+          <h2 class="display">Nuestros productos</h2>
+        </div>
+        <p>Fotos reales de los empaques que fabricamos. Calidad que se ve y se siente.</p>
+      </div>
+    </div>
+    <div class="wrap" style="padding:0;">
+      <div class="gallery-grid">
+        <figure class="gallery-item large">
+          <img src="assets/img/producto_negro_mate.jpg" alt="Empaque negro mate premium - Stand Up Pouch" loading="lazy">
+          <figcaption>
+            <span class="tag">Negro mate</span>
+            <h3>Stand Up Pouch Premium</h3>
+            <p>Acabado mate de alto contraste para marcas que destacan en góndola.</p>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets/img/producto_plateado.jpg" alt="Empaque plateado metalizado - Barrera total" loading="lazy">
+          <figcaption>
+            <span class="tag">Plateado</span>
+            <h3>Metalizado</h3>
+            <p>Barrera completa contra luz y humedad.</p>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets/img/producto_valvulas.jpg" alt="Válvulas desgasificadoras para café" loading="lazy">
+          <figcaption>
+            <span class="tag">Válvulas</span>
+            <h3>Desgasificadoras</h3>
+            <p>Venta e instalación de válvulas para café tostado.</p>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item wide">
+          <img src="assets/img/producto_kraft_ventana.jpg" alt="Bolsas kraft con ventana - Varios tamaños" loading="lazy">
+          <figcaption>
+            <span class="tag">Kraft + Ventana</span>
+            <h3>Stand Up Kraft con Ventana</h3>
+            <p>Disponibles en múltiples tamaños con zipper hermético.</p>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
