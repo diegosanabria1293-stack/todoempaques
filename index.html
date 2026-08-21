@@ -139,6 +139,53 @@
     font-size:1.05rem;
   }
 
+  /* HERO IMAGES SLIDER */
+  .hero-images{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+  }
+  .hero-slider{
+    position:relative;
+    width:100%;
+    max-width:380px;
+    aspect-ratio:3/4;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.5), 0 0 0 1px var(--line);
+  }
+  .hero-slide{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transition:opacity 0.8s ease;
+  }
+  .hero-slide.active{
+    opacity:1;
+  }
+  .hero-slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .hero-slider-dots{
+    display:flex;
+    gap:10px;
+  }
+  .hero-slider-dots .dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--line);
+    cursor:pointer;
+    transition:all 0.3s ease;
+  }
+  .hero-slider-dots .dot.active{
+    background:var(--kraft-light);
+    transform:scale(1.3);
+  }
+
   /* TICKER */
   .ticker{
     border-top:1px solid var(--line);
@@ -497,7 +544,7 @@
 </header>
 
 <main>
-  <!-- HERO LIMPIO - Solo anuncio principal -->
+  <!-- HERO CON IMÁGENES REALES -->
   <section class="hero" id="hero">
     <div class="wrap hero-grid">
       <div>
@@ -510,36 +557,26 @@
           Empaques premium para café, snacks, frutos secos, especias, suplementos, cosméticos, alimentos para mascotas y mucho más. Fabricamos soluciones personalizadas con materiales de alta calidad y envíos a toda Colombia.
         </p>
       </div>
-      <div class="pouch-scene">
-        <div class="pouch-stage">
-          <div class="pouch-glow" aria-hidden="true"></div>
-          <div class="pouch" id="pouch">
-            <div class="hang-hole"></div>
-            <div class="zipper"></div>
-            <div class="window" aria-hidden="true">
-              <div class="grain" style="width:7px;height:7px; left:20%; top:30%;"></div>
-              <div class="grain" style="width:9px;height:9px; left:45%; top:55%;"></div>
-              <div class="grain" style="width:6px;height:6px; left:65%; top:25%;"></div>
-              <div class="grain" style="width:8px;height:8px; left:75%; top:60%;"></div>
-              <div class="grain" style="width:5px;height:5px; left:35%; top:70%;"></div>
-            </div>
-            <div class="fold-l"></div>
-            <div class="fold-r"></div>
+      <div class="hero-images">
+        <div class="hero-slider">
+          <div class="hero-slide active">
+            <img src="assets/images/07_negro_mate_premium.jpg" alt="Empaque negro mate premium">
+          </div>
+          <div class="hero-slide">
+            <img src="assets/images/05_kraft_natural.jpg" alt="Bolsa kraft natural">
+          </div>
+          <div class="hero-slide">
+            <img src="assets/images/04_plateado.jpg" alt="Empaque plateado metalizado">
+          </div>
+          <div class="hero-slide">
+            <img src="assets/images/01_negro_valvula_zipper.jpg" alt="Negro con válvula y zipper">
           </div>
         </div>
-        <div class="swatches" role="group" aria-label="Selector de material">
-          <button class="swatch" data-material="kraft" aria-pressed="true">
-            <span class="chip kraft"></span> Kraft
-          </button>
-          <button class="swatch" data-material="negro" aria-pressed="false">
-            <span class="chip negro"></span> Negro mate
-          </button>
-          <button class="swatch" data-material="plateado" aria-pressed="false">
-            <span class="chip plateado"></span> Plateado
-          </button>
-          <button class="swatch" data-material="ventana" aria-pressed="false">
-            <span class="chip ventana"></span> Ventana
-          </button>
+        <div class="hero-slider-dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
         </div>
       </div>
     </div>
@@ -960,6 +997,34 @@
   }
   swatches.forEach(s => {
     s.addEventListener('click', () => applyMaterial(s.dataset.material));
+  });
+
+  // Hero Image Slider
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  const heroDots = document.querySelectorAll('.hero-slider-dots .dot');
+  let currentHeroSlide = 0;
+
+  function showHeroSlide(index){
+    heroSlides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+    heroDots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+  }
+
+  function nextHeroSlide(){
+    currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+    showHeroSlide(currentHeroSlide);
+  }
+
+  setInterval(nextHeroSlide, 4000);
+
+  heroDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      currentHeroSlide = index;
+      showHeroSlide(currentHeroSlide);
+    });
   });
 </script>
 
