@@ -1,0 +1,321 @@
+/* ===================================
+   PREMIUM UPGRADE
+=================================== */
+
+/* FONDO GLOBAL */
+
+body{
+    background:
+    radial-gradient(circle at top left,
+    rgba(200,152,96,.12),
+    transparent 40%),
+
+    radial-gradient(circle at bottom right,
+    rgba(85,112,74,.15),
+    transparent 40%),
+
+    #16140F;
+}
+
+/* HERO */
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(0,0,0,.35),
+        transparent
+    );
+
+    pointer-events:none;
+}
+
+.hero h1{
+    text-shadow:
+    0 8px 40px rgba(0,0,0,.45);
+}
+
+.hero p.lede{
+    font-size:1.15rem;
+    line-height:1.8;
+}
+
+/* BOTONES */
+
+.btn{
+    border-radius:12px;
+    font-weight:700;
+    transition:.35s ease;
+}
+
+.btn-primary{
+    background:linear-gradient(
+        135deg,
+        #55704A,
+        #6E8E60
+    );
+
+    box-shadow:
+    0 10px 30px rgba(85,112,74,.35);
+}
+
+.btn-primary:hover{
+    transform:translateY(-4px);
+    box-shadow:
+    0 18px 45px rgba(85,112,74,.45);
+}
+
+.btn-ghost{
+    backdrop-filter:blur(12px);
+    background:rgba(255,255,255,.03);
+}
+
+.btn-ghost:hover{
+    background:rgba(255,255,255,.05);
+}
+
+/* ESTADÍSTICAS */
+
+.hero-meta .stat{
+    padding:18px;
+    border-radius:16px;
+
+    background:rgba(255,255,255,.03);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.hero-meta .stat b{
+    font-size:1.8rem;
+}
+
+/* PRODUCTO CENTRAL */
+
+.pouch{
+    border-radius:20px;
+
+    box-shadow:
+    0 40px 80px rgba(0,0,0,.45),
+    0 0 60px rgba(200,152,96,.18);
+}
+
+.pouch:hover{
+    transform:translateY(-8px);
+}
+
+/* TÍTULOS */
+
+.display{
+    letter-spacing:.02em;
+}
+
+.section-head h2{
+    position:relative;
+}
+
+.section-head h2::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-12px;
+
+    width:80px;
+    height:4px;
+
+    background:var(--kraft);
+
+    border-radius:20px;
+}
+
+/* TARJETAS PRODUCTOS */
+
+.product-card{
+    position:relative;
+
+    overflow:hidden;
+
+    border:none;
+
+    transition:.35s ease;
+}
+
+.product-card::before{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        transparent,
+        rgba(255,255,255,.03)
+    );
+
+    opacity:0;
+
+    transition:.35s;
+}
+
+.product-card:hover{
+    transform:translateY(-8px);
+}
+
+.product-card:hover::before{
+    opacity:1;
+}
+
+.product-card h3{
+    font-size:1.5rem;
+}
+
+/* FEATURES */
+
+.feature{
+    transition:.35s ease;
+
+    position:relative;
+}
+
+.feature:hover{
+    transform:translateY(-8px);
+}
+
+.feature .icon{
+    background:
+    linear-gradient(
+        135deg,
+        rgba(200,152,96,.25),
+        rgba(200,152,96,.05)
+    );
+}
+
+/* PROCESO */
+
+.process-step{
+    transition:.35s ease;
+}
+
+.process-step:hover{
+    background:#211D15;
+}
+
+.process-step:hover .idx{
+    color:#E7D3AE;
+}
+
+/* MAYOREO */
+
+.tier{
+    border-radius:18px;
+
+    transition:.35s ease;
+}
+
+.tier:hover{
+    transform:translateY(-8px);
+}
+
+.tier.highlight{
+    box-shadow:
+    0 20px 50px rgba(85,112,74,.25);
+}
+
+/* CTA FINAL */
+
+.cta-band{
+    position:relative;
+    overflow:hidden;
+}
+
+.cta-band::before{
+    content:"";
+
+    position:absolute;
+
+    width:600px;
+    height:600px;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,255,255,.15),
+        transparent
+    );
+
+    top:-300px;
+    right:-150px;
+}
+
+.cta-band h2{
+    text-shadow:
+    0 8px 30px rgba(0,0,0,.15);
+}
+
+/* FOOTER */
+
+footer{
+    background:#111;
+}
+
+.footer-grid{
+    padding-bottom:20px;
+}
+
+/* WHATSAPP */
+
+.float-wa{
+    width:68px;
+    height:68px;
+
+    box-shadow:
+    0 15px 40px rgba(85,112,74,.5);
+
+    animation:pulseWA 2.5s infinite;
+}
+
+@keyframes pulseWA{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#16140F;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#C89860;
+    border-radius:20px;
+}
